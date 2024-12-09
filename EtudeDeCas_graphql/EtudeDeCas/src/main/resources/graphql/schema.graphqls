@@ -1,0 +1,83 @@
+# Define the Client type
+type Client {
+    id: ID!
+    nom: String!
+    prenom: String!
+    email: String!
+    telephone: String!
+}
+
+# Define the Chambre type
+type Chambre {
+    id: ID!
+    type: String!
+    prix: Float!
+    disponible: Boolean!
+}
+
+# Define the Reservation type
+type Reservation {
+    id: ID!
+    client: Client!
+    chambre: Chambre!
+    dateDebut: String! # You can use String or Date format depending on the GraphQL server's capabilities
+    dateFin: String!
+    preferences: String
+}
+
+# Define Queries for fetching data
+type Query {
+    getAllClients: [Client]    # Get all clients
+    getClientById(id: ID!): Client    # Get a specific client by ID
+
+    getAllChambres: [Chambre]    # Get all chambres
+    getChambreById(id: ID!): Chambre    # Get a specific chambre by ID
+
+    getAllReservations: [Reservation]    # Get all reservations
+    getReservationById(id: ID!): Reservation    # Get a specific reservation by ID
+}
+
+# Define Mutations for creating, updating, and deleting data
+type Mutation {
+    createClient(client: ClientRequist): Client
+
+    createChambre(chambre: ChamberRequist): Chambre
+
+    createReservation(reservation: ReservationRequist): Reservation
+
+    updateClient(id: ID!, client: ClientRequist): Client
+
+    updateChambre(id: ID!,chambre : ChamberRequist): Chambre
+
+    updateReservation(id: ID!,reservation: ReservationRequist): Reservation
+
+    deleteClient(id: ID!): Boolean
+    deleteChambre(id: ID!): Boolean
+    deleteReservation(id: ID!): Boolean
+}
+
+input ClientRequist{
+    nom: String
+    prenom: String
+    email: String
+    telephone: String
+}
+input ChamberRequist{
+    type: String
+    prix: Float
+    disponible: Boolean
+}
+
+input ClientRequistForReservation{
+    id: ID
+}
+input ChamberRequistForReservation{
+    id: ID
+}
+input ReservationRequist{
+    client: ClientRequistForReservation
+    chambre: ChamberRequistForReservation
+    dateDebut: String
+    dateFin: String
+    preferences: String
+}
