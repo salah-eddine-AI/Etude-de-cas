@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package com.security.etudedecas.grpc;
+
+service ClientService {
+  rpc AddClient (ClientRequest) returns (ClientResponse);
+  rpc GetClientById (ClientRequestById) returns (ClientResponse);
+}
+
+message ClientRequest {
+  string nom = 1;
+  string prenom = 2;
+  string email = 3;
+  string telephone = 4;
+}
+
+message ClientRequestById {
+  int64 id = 1;
+}
+
+message ClientResponse {
+  int64 id = 1;
+  string nom = 2;
+  string prenom = 3;
+  string email = 4;
+  string telephone = 5;
+}

@@ -9,14 +9,14 @@ const UpdateReservation = ({ reservationId }) => {
     preferences: ''
   });
   const [chambres, setChambres] = useState([]);
-  const [reservation, setReservation] = useState(null); // State to hold reservation data
+  const [reservation, setReservation] = useState(null); 
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null); // State to hold error messages
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch reservation details by reservationId
+        
         const reservationResponse = await fetch(`http://localhost:8082/api/reservations/${reservationId}`);
         if (!reservationResponse.ok) {
           throw new Error("Failed to fetch reservation details");
@@ -24,7 +24,7 @@ const UpdateReservation = ({ reservationId }) => {
         const reservationData = await reservationResponse.json();
         setReservation(reservationData);
 
-        // Set form data from reservation details
+       
         setFormData({
           clientId: reservationData.client.id,
           chambreId: reservationData.chambre.id,
@@ -33,7 +33,7 @@ const UpdateReservation = ({ reservationId }) => {
           preferences: reservationData.preferences,
         });
 
-        // Fetch available chambres (filter those that are available)
+        
         const chambresResponse = await fetch('http://localhost:8082/api/chambres');
         if (!chambresResponse.ok) {
           throw new Error("Failed to fetch chambres");
@@ -69,7 +69,7 @@ const UpdateReservation = ({ reservationId }) => {
     };
 
     try {
-      // Update the reservation by sending the updated data
+      
       const response = await fetch(`http://localhost:8082/api/reservations/${reservationId}`, {
         method: 'PUT',
         headers: {

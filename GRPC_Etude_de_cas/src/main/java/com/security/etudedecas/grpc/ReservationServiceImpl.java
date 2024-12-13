@@ -1,0 +1,4 @@
+package com.security.etudedecas.grpc;
+
+public class ReservationServiceImpl     {
+}

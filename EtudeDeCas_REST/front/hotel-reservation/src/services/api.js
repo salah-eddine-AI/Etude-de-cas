@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = "http://localhost:8082/api"; // Update with your actual base URL
+const API_BASE_URL = "http://localhost:8082/api"; 
 
 export const createReservation = async (data) => {
   try {
@@ -8,7 +8,7 @@ export const createReservation = async (data) => {
     return response;
   } catch (error) {
     console.error('Error creating reservation:', error.response || error);
-    throw error; // Re-throw error to handle it in the component
+    throw error; 
   }
 };
 

@@ -3,18 +3,18 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getReservationById, updateReservation } from '../services/api';
 
 const ViewReservation = () => {
-  const { reservationId } = useParams(); // Get reservationId from URL
+  const { reservationId } = useParams(); 
   const navigate = useNavigate();
   const [reservation, setReservation] = useState(null);
-  const [chambres, setChambres] = useState([]); // To store available chambres
-  const [selectedChambre, setSelectedChambre] = useState(null); // To store the selected chambre
+  const [chambres, setChambres] = useState([]); 
+  const [selectedChambre, setSelectedChambre] = useState(null);
 
   useEffect(() => {
     const fetchReservation = async () => {
       try {
         const response = await getReservationById(reservationId);
         setReservation(response.data);
-        setSelectedChambre(response.data.chambre); // Preselect the current chambre
+        setSelectedChambre(response.data.chambre); 
       } catch (error) {
         console.error("Failed to fetch reservation details:", error);
       }
@@ -25,7 +25,7 @@ const ViewReservation = () => {
         const response = await fetch('http://localhost:8082/api/chambres');
         if (!response.ok) throw new Error('Failed to fetch chambres');
         const chambresData = await response.json();
-        const availableChambres = chambresData.filter(chambre => chambre.disponible); // Filter available chambres
+        const availableChambres = chambresData.filter(chambre => chambre.disponible); 
         setChambres(availableChambres);
       } catch (error) {
         console.error("Failed to fetch available chambres:", error);
@@ -59,7 +59,7 @@ const ViewReservation = () => {
         chambre: { id: selectedChambre.id }, // Update chambre ID with selected chambre
       };
       await updateReservation(reservationId, updatedReservation);
-      navigate('/reservations'); // Navigate back to the list after updating
+      navigate('/reservations'); 
     } catch (error) {
       console.error("Failed to update reservation:", error);
     }

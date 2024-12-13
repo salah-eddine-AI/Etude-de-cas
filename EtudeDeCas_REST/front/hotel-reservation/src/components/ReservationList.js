@@ -7,7 +7,6 @@ const ReservationList = () => {
   const [reservations, setReservations] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch reservations from the API
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,7 +19,6 @@ const ReservationList = () => {
     fetchData();
   }, []);
 
-  // Navigate to view page
   const handleUpdate = (id) => {
     navigate(`/view/${id}`);
   };

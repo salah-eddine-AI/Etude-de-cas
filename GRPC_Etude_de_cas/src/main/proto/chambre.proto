@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package com.security.etudedecas.grpc;
+
+service ChambreService {
+  rpc GetChambreById (ChambreRequest) returns (ChambreResponse);
+  rpc GetAllChambres (EmptyRequest) returns (ChambreListResponse);
+}
+
+message ChambreRequest {
+  int64 id = 1;
+}
+
+message ChambreResponse {
+  int64 id = 1;
+  string type = 2;
+  double prix = 3;
+  bool disponible = 4;
+}
+
+message ChambreListResponse {
+  repeated ChambreResponse chambres = 1;
+}
+
+message EmptyRequest {}

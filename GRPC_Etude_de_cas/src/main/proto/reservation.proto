@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package com.security.etudedecas.grpc;
+
+service ReservationService {
+  rpc CreateReservation (ReservationRequest) returns (ReservationResponse);
+  rpc GetReservationById (ReservationRequestById) returns (ReservationResponse);
+}
+
+message ReservationRequest {
+  int64 clientId = 1;
+  int64 chambreId = 2;
+  string dateDebut = 3;
+  string dateFin = 4;
+  string preferences = 5;
+}
+
+message ReservationRequestById {
+  int64 id = 1;
+}
+
+message ReservationResponse {
+  int64 id = 1;
+  int64 clientId = 2;
+  int64 chambreId = 3;
+  string dateDebut = 4;
+  string dateFin = 5;
+  string preferences = 6;
+}

@@ -13,12 +13,12 @@ const CreateReservation = () => {
   const [chambres, setChambres] = useState([]);
 
   useEffect(() => {
-    // Fetch available chambres (with 'disponible' set to true)
+    
     const fetchChambres = async () => {
       try {
         const response = await fetch('http://localhost:8082/api/chambres');
         const data = await response.json();
-        // Filter chambres that are available
+        
         const availableChambres = data.filter(chambre => chambre.disponible);
         setChambres(availableChambres);
       } catch (error) {
@@ -36,7 +36,7 @@ const CreateReservation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prepare the reservation data to match the expected structure
+    
     const reservationData = {
       client: { id: formData.clientId },
       chambre: { id: formData.chambreId },
